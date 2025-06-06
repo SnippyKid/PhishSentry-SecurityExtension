@@ -1,0 +1,38 @@
+{
+  "manifest_version": 3,
+  "name": "PhishSentry - Email Protector",
+  "version": "1.0",
+  "description": "Automatically detects phishing content in emails and warns users",
+  "permissions": [
+    "activeTab",
+    "scripting", 
+    "storage",
+    "webNavigation"
+  ],
+  "host_permissions": [
+    "http://127.0.0.1:5000/*",
+    "*://mail.google.com/*",
+    "*://outlook.live.com/*",
+    "*://outlook.office.com/*",
+    "*://mail.yahoo.com/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "*://mail.google.com/*",
+        "*://outlook.live.com/*",
+        "*://outlook.office.com/*",
+        "*://mail.yahoo.com/*"
+      ],
+      "js": ["content.js"],
+      "css": ["overlay.css"],
+      "run_at": "document_idle"
+    }
+  ],
+  "action": {
+    "default_popup": "popup.html"
+  }
+} 

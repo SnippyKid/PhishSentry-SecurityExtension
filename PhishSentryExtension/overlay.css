@@ -1,0 +1,183 @@
+/* PhishSentry Warning Overlay Styles */
+
+.phishsentry-warning {
+  position: relative;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: #FEF0F0;
+  color: #D93025;
+  padding: 12px 16px;
+  margin-bottom: 16px;
+  border-left: 4px solid #D93025;
+  font-family: 'Segoe UI', Tahoma, sans-serif;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  border-radius: 4px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12);
+  z-index: 1000;
+  animation: phishsentry-fade-in 0.3s ease-out;
+}
+
+@keyframes phishsentry-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.phishsentry-warning svg {
+  margin-right: 12px;
+  flex-shrink: 0;
+}
+
+.phishsentry-warning strong {
+  display: block;
+  margin-bottom: 4px;
+  font-size: 15px;
+}
+
+.phishsentry-warning p {
+  margin: 0;
+  line-height: 1.4;
+}
+
+/* Gmail-specific styles */
+.gmail-view .phishsentry-warning {
+  margin: 0 0 16px 0;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Outlook-specific styles */
+.outlook-view .phishsentry-warning {
+  margin: 0 0 16px 0;
+}
+
+/* Yahoo Mail-specific styles */
+.yahoo-view .phishsentry-warning {
+  width: calc(100% - 16px);
+  margin: 8px;
+}
+
+/* Close button for the warning */
+.phishsentry-close {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 16px;
+  height: 16px;
+  opacity: 0.6;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.phishsentry-close:hover {
+  opacity: 1;
+}
+
+.phishsentry-close:before,
+.phishsentry-close:after {
+  position: absolute;
+  left: 8px;
+  content: ' ';
+  height: 16px;
+  width: 2px;
+  background-color: #D93025;
+}
+
+.phishsentry-close:before {
+  transform: rotate(45deg);
+}
+
+.phishsentry-close:after {
+  transform: rotate(-45deg);
+}
+
+/* Full page overlay for highly dangerous emails */
+.phishsentry-danger-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 10000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.phishsentry-danger-card {
+  background-color: white;
+  border-radius: 8px;
+  padding: 24px;
+  max-width: 500px;
+  width: 90%;
+  text-align: center;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+}
+
+.phishsentry-danger-icon {
+  width: 64px;
+  height: 64px;
+  margin: 0 auto 16px;
+  background-color: #FEF0F0;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.phishsentry-danger-icon svg {
+  width: 40px;
+  height: 40px;
+  fill: #D93025;
+}
+
+.phishsentry-danger-title {
+  font-size: 20px;
+  font-weight: bold;
+  color: #D93025;
+  margin-bottom: 12px;
+}
+
+.phishsentry-danger-text {
+  color: #5F6368;
+  margin-bottom: 24px;
+  line-height: 1.5;
+}
+
+.phishsentry-danger-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+}
+
+.phishsentry-btn {
+  padding: 10px 16px;
+  border-radius: 4px;
+  font-weight: 500;
+  cursor: pointer;
+  border: none;
+  font-size: 14px;
+}
+
+.phishsentry-btn-primary {
+  background-color: #1A73E8;
+  color: white;
+}
+
+.phishsentry-btn-secondary {
+  background-color: #F1F3F4;
+  color: #202124;
+}
+
+.phishsentry-btn:hover {
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+} 

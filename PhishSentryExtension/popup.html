@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PhishSentry</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      width: 350px;
+      margin: 0;
+      padding: 0;
+      background-color: #f5f8fa;
+      color: #333;
+    }
+
+    .header {
+      background-color: #1a73e8;
+      color: white;
+      padding: 12px 15px;
+      text-align: center;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .header h1 {
+      margin: 0;
+      font-size: 18px;
+    }
+
+    .container {
+      padding: 15px;
+    }
+
+    .status-section {
+      background-color: white;
+      border-radius: 8px;
+      padding: 15px;
+      margin-bottom: 15px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    }
+
+    .status-indicator {
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .status-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      margin-right: 10px;
+    }
+
+    .active {
+      background-color: #34a853;
+      box-shadow: 0 0 5px #34a853;
+    }
+
+    .inactive {
+      background-color: #ea4335;
+    }
+
+    .stats-section {
+      background-color: white;
+      border-radius: 8px;
+      padding: 15px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+      margin-top: 0;
+      font-size: 16px;
+      color: #202124;
+      margin-bottom: 10px;
+    }
+
+    .stat-item {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 8px;
+      font-size: 14px;
+    }
+
+    .stat-value {
+      font-weight: bold;
+    }
+
+    .phishing-value {
+      color: #ea4335;
+    }
+
+    .settings {
+      margin-top: 15px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .toggle-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .toggle {
+      position: relative;
+      display: inline-block;
+      width: 40px;
+      height: 20px;
+    }
+
+    .toggle input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #ccc;
+      transition: .3s;
+      border-radius: 20px;
+    }
+
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 16px;
+      width: 16px;
+      left: 2px;
+      bottom: 2px;
+      background-color: white;
+      transition: .3s;
+      border-radius: 50%;
+    }
+
+    input:checked + .slider {
+      background-color: #1a73e8;
+    }
+
+    input:checked + .slider:before {
+      transform: translateX(20px);
+    }
+
+    .footer {
+      font-size: 12px;
+      color: #5f6368;
+      text-align: center;
+      padding: 10px;
+      border-top: 1px solid #eee;
+      margin-top: 15px;
+    }
+    
+    .actions-section {
+      margin-top: 15px;
+    }
+    
+    .action-button {
+      background-color: #1a73e8;
+      color: white;
+      border: none;
+      padding: 8px 12px;
+      border-radius: 4px;
+      font-size: 14px;
+      cursor: pointer;
+      width: 100%;
+      margin-bottom: 8px;
+      transition: background-color 0.3s;
+    }
+    
+    .action-button:hover {
+      background-color: #0d62c9;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h1>PhishSentry</h1>
+  </div>
+
+  <div class="container">
+    <div class="status-section">
+      <div class="status-indicator">
+        <div class="status-dot active" id="status-dot"></div>
+        <div id="status-text">Protection active</div>
+      </div>
+      <p id="monitoring-text">Monitoring emails for phishing content in real-time.</p>
+    </div>
+
+    <div class="stats-section">
+      <h2>Protection Statistics</h2>
+      <div class="stat-item">
+        <div>Emails Scanned:</div>
+        <div class="stat-value" id="emails-scanned">0</div>
+      </div>
+      <div class="stat-item">
+        <div>Phishing Detected:</div>
+        <div class="stat-value phishing-value" id="phishing-detected">0</div>
+      </div>
+      <div class="stat-item">
+        <div>Last Scan:</div>
+        <div class="stat-value" id="last-scan">Never</div>
+      </div>
+    </div>
+
+    <div class="settings">
+      <h2>Protection Settings</h2>
+      <div class="toggle-container">
+        <span>Auto-scan all emails</span>
+        <label class="toggle">
+          <input type="checkbox" id="auto-scan" checked>
+          <span class="slider"></span>
+        </label>
+      </div>
+      <div class="toggle-container">
+        <span>Show warning banners</span>
+        <label class="toggle">
+          <input type="checkbox" id="show-warnings" checked>
+          <span class="slider"></span>
+        </label>
+      </div>
+      <div class="toggle-container">
+        <span>Show safe notifications</span>
+        <label class="toggle">
+          <input type="checkbox" id="show-safe-notifications" checked>
+          <span class="slider"></span>
+        </label>
+      </div>
+    </div>
+    
+    <div class="actions-section">
+      <button class="action-button" id="rescan-button">Rescan Current Page</button>
+    </div>
+  </div>
+
+  <div class="footer">
+    PhishSentry - AI-Powered Phishing Protection
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html> 

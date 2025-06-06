@@ -1,0 +1,10 @@
+pandas
+scikit-learn
+joblib
+nltk
+flask
+flask-cors
+tldextract
+validators
+dnspython
+pymongo
