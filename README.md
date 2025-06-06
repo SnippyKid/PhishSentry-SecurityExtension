@@ -13,10 +13,10 @@ PhishSentry is a browser extension that automatically detects and warns users ab
 ## Screenshots
 
 ### Safe Email Detection
-![Safe Email Detection](https://raw.githubusercontent.com/username/PhishSentry/main/screenshots/safe-email-detection.png)
+![Safe Email Detection](./mail.google.com_mail_u_0__tab=rm&ogbl(High%20res)%20(1).png)
 
 ### Phishing Email Detection
-![Phishing Email Detection](https://raw.githubusercontent.com/username/PhishSentry/main/screenshots/phishing-email-detection.png)
+![Phishing Email Detection](./mail.google.com_mail_u_0__tab=rm&ogbl(High%20res).png)
 
 ## Architecture
 
