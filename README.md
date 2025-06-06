@@ -1,48 +1,77 @@
-# PhishSentry Frontend
+# PhishSentry - Email Phishing Detection Extension
 
-A clean, modern web interface for the PhishSentry email phishing detection system.
-
-## Overview
-
-This frontend application provides a user-friendly interface for interacting with the PhishSentry API to detect potential phishing emails.
+PhishSentry is a browser extension that automatically detects and warns users about potential phishing content in emails. Using machine learning, it provides real-time protection while browsing email platforms like Gmail, Outlook, and Yahoo Mail.
 
 ## Features
 
-- Simple, intuitive interface for email analysis
-- Real-time feedback on phishing detection
-- Visual indicators for safe vs. suspicious emails
-- Confidence score display
+- **Real-time Email Analysis**: Automatically scans emails as you open them
+- **ML-powered Detection**: Uses a trained machine learning model to identify phishing attempts
+- **Visual Warnings**: Clear warning banners for suspicious content
+- **Cross-platform**: Works on Gmail, Outlook, and Yahoo Mail
+- **Lightweight**: Minimal performance impact on browser
 
-## Setup Instructions
+## Screenshots
 
-1. Make sure the PhishSentry backend server is running (typically on http://localhost:5000)
-2. Open `index.html` in a modern web browser, or serve the folder using a simple HTTP server
+### Safe Email Detection
+![Safe Email Detection](https://raw.githubusercontent.com/username/PhishSentry/main/screenshots/safe-email-detection.png)
 
-### Using Python to serve the app locally
+### Phishing Email Detection
+![Phishing Email Detection](https://raw.githubusercontent.com/username/PhishSentry/main/screenshots/phishing-email-detection.png)
 
+## Architecture
+
+PhishSentry consists of two main components:
+
+1. **Browser Extension (Frontend)**: 
+   - Monitors email content in supported webmail clients
+   - Sends email text to the backend API
+   - Displays appropriate warnings
+
+2. **API Server (Backend)**:
+   - Flask-based REST API
+   - Loads ML model trained on phishing emails
+   - Analyzes content and returns prediction results
+
+## Installation
+
+### Backend Setup
 ```bash
-# Using Python 3
-python -m http.server
+# Clone the repository
+git clone https://github.com/username/PhishSentry.git
 
-# Using Python 2
-python -m SimpleHTTPServer
+# Navigate to the backend directory
+cd PhishSentry/Backend
+
+# Install dependencies
+pip install -r requirements.txt
+
+# Start the server
+python app.py
 ```
 
-Navigate to http://localhost:8000 in your browser
-
-## Usage
-
-1. Paste the email content you want to analyze into the text area
-2. Click the "Analyze Email" button
-3. View the analysis results showing whether the email appears safe or potentially suspicious
-4. See the confidence score for the prediction
-
-## API Integration
-
-This frontend communicates with the PhishSentry backend API running at http://localhost:5000/predict. If your backend is running on a different endpoint, update the `API_URL` variable in `script.js`.
+### Extension Setup
+1. Open Chrome and go to `chrome://extensions/`
+2. Enable "Developer mode"
+3. Click "Load unpacked" and select the `PhishSentryExtension` folder
+4. Make sure the backend server is running
 
 ## Technologies Used
 
-- HTML5
-- CSS3
-- JavaScript (ES6+) 
+- **Frontend**: HTML, CSS, JavaScript
+- **Backend**: Python, Flask
+- **ML Model**: scikit-learn, TF-IDF Vectorization, Naive Bayes
+
+## Future Improvements
+
+- Add support for more email providers
+- Implement link analysis to detect malicious URLs
+- Create options for customizing sensitivity levels
+- Add user feedback mechanism to improve the model
+
+## License
+
+[MIT License](LICENSE)
+
+---
+
+*Note: This extension is a proof-of-concept and should be used for educational purposes.* 
